@@ -48,6 +48,6 @@ jobs:
       - name: Docker Scout
         uses: docker/scout-action@v1.13.0
         with:
-          dockerhub-user: ${{ DOCKER_USER }}
-          dockerhub-password: ${{ DOCKER_PASSWORD }}
+          dockerhub-user: ${{ secrets.DOCKER_USER }}
+          dockerhub-password: ${{ secrets.DOCKER_PASSWORD }}
           
