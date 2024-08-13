@@ -40,14 +40,14 @@ jobs:
       - name: Install docker
         uses: docker-practice/actions-setup-docker@v1
         with:
-          docker_version: '20.10.7'
+          docker_version: '27.1.1'
 
       - name: Build docker image
         run: docker build -f Dockerfile -t muapp:latest .
 
-      - name: Scan image
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh -o install-scout.sh
-          sh install-scout.sh
-          docker scout quickview
-          docker scout cves
+      - name: Docker Scout
+        uses: docker/scout-action@v1.13.0
+        with:
+          dockerhub-user: ${{ DOCKER_USER }}
+          dockerhub-password: ${{ DOCKER_PASSWORD }}
+          
